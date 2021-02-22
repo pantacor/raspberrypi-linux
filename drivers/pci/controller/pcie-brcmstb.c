@@ -1410,9 +1410,10 @@ static int brcm_pcie_setup(struct brcm_pcie *pcie)
 
 	/*
 	 * Ensure that the fundamental reset is asserted, except for 7278,
-	 * which fails if we do this.
+	 * which fails if we do this. Also avoid doing it for 2711 (RPi4)
+	 * as for now we rely on the bootloader triggering the reset.
 	 */
-	if (pcie->type != BCM7278)
+	if ((pcie->type != BCM7278) && (pcie->type != BCM2711))
 		brcm_pcie_perst_set(pcie, 1);
 
 	usleep_range(100, 200);
