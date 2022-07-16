@@ -1044,9 +1044,6 @@ static void fbcon_init(struct vc_data *vc, int init)
 	info = registered_fb[con2fb_map[vc->vc_num]];
 	cap = info->flags;
 
-	if (logo_shown < 0 && console_loglevel <= CONSOLE_LOGLEVEL_QUIET)
-		logo_shown = FBCON_LOGO_DONTSHOW;
-
 	if (vc != svc || logo_shown == FBCON_LOGO_DONTSHOW ||
 	    (info->fix.type == FB_TYPE_TEXT))
 		logo = 0;
